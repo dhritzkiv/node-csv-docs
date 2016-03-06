@@ -1,0 +1,17 @@
+0.0.0.0:2020
+gzip
+root /www/public
+log /www/access.log
+git {
+    repo     https://github.com/wdavidw/node-csv-docs.git
+    path     /www/src
+    branch   test
+    interval 1000 # 86400
+    then     echo 'a'
+    then     npm install
+    then     echo 'b'
+    then     npm install underscore
+    then     echo 'c'
+    then     node_modules/docpad/bin/docpad generate --env static --out /www/public
+    then     echo 'd'
+}
